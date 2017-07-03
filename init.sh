@@ -66,12 +66,13 @@ dbus-daemon --system --fork > /dev/null 2>&1
 /etc/init.d/ssh start
 /usr/sbin/inetd /etc/inetd.conf
 
-# Login in in some of these ways
-telnet 1270.0.0.1 -l "ubuntu"
-# ssh 1270.0.0.1 -l "ubuntu" 
+# Login, some of these might work
+telnet 127.0.0.1 -l "ubuntu"
+# ssh 127.0.0.1 -l "ubuntu" 
 # bash -l "ubuntu"
+# su "ubuntu"
 
-# Killall
+# When exit from the login session Kill Everything
 killall -9 inetd
 su ubuntu -l -c "vncserver -kill :0"
 /etc/init.d/ssh stop
