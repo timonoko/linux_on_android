@@ -47,28 +47,21 @@ if [ ! -f /root/DONOTDELETE.txt ]
         echo "boot set" >> /root/DONOTDELETE.txt
 fi
 
-###########################################
-# Tidy up previous LXDE and DBUS sessions #
-###########################################
+# Tidy up previous LXDE and DBUS sessions 
 rm /tmp/.X* > /dev/null 2>&1
 rm /tmp/.X11-unix/X* > /dev/null 2>&1
 rm /root/.vnc/localhost* > /dev/null 2>&1
 rm /var/run/dbus/pid > /dev/null 2>&1
 
-############################################################
 # enable workaround for upstart dependent installs         #
 # in chroot'd environment. this allows certain packages    #
 # that use upstart start/stop to not fail on install.      #
 # this means they will have to be launched manually though #
-############################################################
 dpkg-divert --local --rename --add /sbin/initctl > /dev/null 2>&1
 ln -s /bin/true /sbin/initctl > /dev/null 2>&1
 
-###############################################
-# start vnc server with given resolution and  #
-# DBUS server and  SSH server                 #
-###############################################
-
+# start vnc server with given resolution and  
+# DBUS server and  SSH server                 
 su ubuntu -l -c "vncserver :0 -geometry 1366x768 -depth 16"
 dbus-daemon --system --fork > /dev/null 2>&1
 /etc/init.d/ssh start
