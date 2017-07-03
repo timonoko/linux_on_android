@@ -3,7 +3,7 @@ Simplest possible linux_on_android on rooted android 5.0
 
 Most code is stolen from other LoA-projects, of course. I do not know shit. 
 
-Needs busybox and starts with busybox-command "linuksi".
+Needs busybox and starts with terminal command "linuksi".
 
 Firstly you root the phone (Kingroot works).
 
