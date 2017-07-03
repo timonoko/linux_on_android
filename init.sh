@@ -4,6 +4,7 @@ unset LD_PRELOAD
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:
 export TERM=linux
 
+# Executed only once
 if [ ! -f /root/DONOTDELETE.txt ]
 	then
 	echo "Starting first boot setup......."
