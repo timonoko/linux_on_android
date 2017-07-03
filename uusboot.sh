@@ -14,7 +14,7 @@ mount -o bind /storage/usbotg  $mnt/usbotg
 # Sets up network forwarding 
 sysctl -w net.ipv4.ip_forward=1
 
-# If NOT $mnt/root/DONOTDELETE.txt exists we setup hosts and resolv.conf now
+# Executed only once
 if [ ! -f $mnt/root/DONOTDELETE.txt ]; then
 	echo "nameserver 8.8.8.8" > $mnt/etc/resolv.conf
 	echo "nameserver 8.8.4.4" >> $mnt/etc/resolv.conf
