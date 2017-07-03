@@ -9,7 +9,7 @@ Firstly you root the phone (Kingroot works).
 
 And then you make a separate EXT3-partition and mount it at /data/sdext2.
 
-And then you dump a complete linux system on that partition.
+And then you dump a complete linux system on that partition. Looks like this system must have user "ubuntu".
 
 And then you copy "linuksi" to /system/bin/ ,
            and "uusboot.sh" to /data/sdext2/ ,
