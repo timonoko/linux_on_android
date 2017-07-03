@@ -9,17 +9,11 @@ mnt=/data/sdext2
 
 # Mount all required partitions           #
 mount -o gid=5,mode=620 -t devpts devpts $mnt/dev/pts 
-if [ $? -ne 0 ];then error_exit "Unable to mount $mnt/dev/pts!"; fi
 mount -t proc proc $mnt/proc
-if [ $? -ne 0 ];then error_exit "Unable to mount $mnt/proc!"; fi
 mount -t sysfs sysfs $mnt/sys
-if [ $? -ne 0 ];then error_exit "Unable to mount $mnt/sys!"; fi
 mount -o bind /sdcard $mnt/sdcard
-if [ $? -ne 0 ];then error_exit "Unable to bind $mnt/sdcard!"; fi
 mount -o bind /storage/sdcard1 $mnt/sdcard1
-if [ $? -ne 0 ];then error_exit "Unable to bind $mnt/sdcard1!"; fi
 mount -o bind /storage/usbotg  $mnt/usbotg
-if [ $? -ne 0 ];then error_exit "Unable to bind $mnt/usbotg!"; fi
 
 # Sets up network forwarding 
 sysctl -w net.ipv4.ip_forward=1
