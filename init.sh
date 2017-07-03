@@ -55,7 +55,7 @@ ln -s /bin/true /sbin/initctl > /dev/null 2>&1
 su ubuntu -l -c "vncserver :0 -geometry 1366x768 -depth 16"
 dbus-daemon --system --fork > /dev/null 2>&1
 /etc/init.d/ssh start
-/usr/sbin/inetd /etc/inetd.conf # telnet and ftp enabed in inetd.conf
+/usr/sbin/inetd /etc/inetd.conf # telnet and ftp enabled in /etc/inetd.conf
 
 # Login, some of these might work
 telnet 127.0.0.1 -l "ubuntu"
