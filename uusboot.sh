@@ -1,9 +1,5 @@
 # This is resides in /data/sdext2/ at the base of mounted linux-filesystem partition
 
-error_exit() {
-    echo "Error: $1"
-}
-
 cd /
 mnt=/data/sdext2
 
