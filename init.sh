@@ -60,17 +60,18 @@ rm /var/run/dbus/pid > /dev/null 2>&1
 dpkg-divert --local --rename --add /sbin/initctl > /dev/null 2>&1
 ln -s /bin/true /sbin/initctl > /dev/null 2>&1
 
-# start vnc server with given resolution and  
-# DBUS server and  SSH server                 
+# start vnc server with given resolution and  DBUS and  SSH server                 
 su ubuntu -l -c "vncserver :0 -geometry 1366x768 -depth 16"
 dbus-daemon --system --fork > /dev/null 2>&1
 /etc/init.d/ssh start
 /usr/sbin/inetd /etc/inetd.conf
 
+# Login in in some of these ways
 telnet 1270.0.0.1 -l "ubuntu"
-#ssh 1270.0.0.1 -l "ubuntu" 
+# ssh 1270.0.0.1 -l "ubuntu" 
+# bash -l "ubuntu"
 
+# Killall
 killall -9 inetd
 su ubuntu -l -c "vncserver -kill :0"
 /etc/init.d/ssh stop
-ps -a
