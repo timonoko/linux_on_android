@@ -9,8 +9,10 @@ Firstly you root the phone (Kingroot works).
 
 And then you make a separate EXT3-partition and mount it at /data/sdext2.
 
-And then you dump a complete linux system on that partition. "onnanoko" is the default user.
+And then you dump a complete linux system on that partition.
 
 And then you copy "linuksi" to /system/bin/ ,
            and "uusboot.sh" to /data/sdext2/ ,
            and "init.sh" to /data/sdext2/root/.
+           
+"onnanoko" is the default user.
