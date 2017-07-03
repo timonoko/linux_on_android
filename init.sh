@@ -22,12 +22,12 @@ if [ ! -f /root/DONOTDELETE.txt ]
 	chmod 755 /var/run/dbus
 	usermod -a -G android_bt,android_bt-net,android_inet,android_net-raw messagebus
 	echo "shm /dev/shm tmpfs nodev,nosuid,noexec 0 0" >> /etc/fstab
-	adduser "ubuntu"
+	adduser "onnanoko"
 	cd /root
-	tar cf - .vnc |(cd /home/ubuntu ; tar xf -)
-	chown -R ubuntu.ubuntu /home/ubuntu
-	usermod -a -G admin ubuntu
-	usermod -a -G android_bt,android_bt-net,android_inet,android_net-raw ubuntu
+	tar cf - .vnc |(cd /home/onnanoko ; tar xf -)
+	chown -R onnanoko.onnanoko /home/onnanoko
+	usermod -a -G admin onnanoko
+	usermod -a -G android_bt,android_bt-net,android_inet,android_net-raw onnanoko
 	mknod -m 666 /dev/ptyp0 c 2 0 #NOKO
 	mknod -m 666 /dev/ptyp1 c 2 1 #NOKO
 	mknod -m 666 /dev/ptyp2 c 2 2 #NOKO
@@ -52,17 +52,17 @@ dpkg-divert --local --rename --add /sbin/initctl > /dev/null 2>&1
 ln -s /bin/true /sbin/initctl > /dev/null 2>&1
 
 # start VNC, DBUS, SSH, TELNET, FTP servers                 
-su ubuntu -l -c "vncserver :0 -geometry 1366x768 -depth 16"
+su onnanoko -l -c "vncserver :0 -geometry 1366x768 -depth 16"
 dbus-daemon --system --fork > /dev/null 2>&1
 /etc/init.d/ssh start
 /usr/sbin/inetd /etc/inetd.conf # telnet and ftp enabled in /etc/inetd.conf
 
 # Login, some of these might work
-telnet 127.0.0.1 -l "ubuntu"
-# ssh 127.0.0.1 -l "ubuntu" 
-# bash -l "ubuntu"
+telnet 127.0.0.1 -l "onnanoko"
+# ssh 127.0.0.1 -l "onnanoko" 
+# bash -l "onnanoko"
 
 # When exit from the login session Kill Everything
 killall -9 inetd
-su ubuntu -l -c "vncserver -kill :0"
+su onnanoko -l -c "vncserver -kill :0"
 /etc/init.d/ssh stop
