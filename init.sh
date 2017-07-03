@@ -24,12 +24,6 @@ if [ ! -f /root/DONOTDELETE.txt ]
 	cd /root
 	tar cf - .vnc |(cd /home/ubuntu ; tar xf -)
 	chown -R ubuntu.ubuntu /home/ubuntu
-	echo
-	echo  "Now give your user account (named ubuntu) a password"
-	echo
-	echo  "Please enter the new password below"
-	echo
-	passwd ubuntu
 	usermod -a -G admin ubuntu
 	usermod -a -G android_bt,android_bt-net,android_inet,android_net-raw ubuntu
 	mknod -m 666 /dev/ptyp0 c 2 0 #NOKO
@@ -37,13 +31,11 @@ if [ ! -f /root/DONOTDELETE.txt ]
 	mknod -m 666 /dev/ptyp2 c 2 2 #NOKO
 	mknod -m 666 /dev/ptyp3 c 2 3 #NOKO
 	mknod -m 666 /dev/ptyp4 c 2 4 #NOKO
-
 	mknod -m 666 /dev/ttyp0 c 3 0 #NOKO
 	mknod -m 666 /dev/ttyp1 c 3 1 #NOKO
 	mknod -m 666 /dev/ttyp2 c 3 2 #NOKO
 	mknod -m 666 /dev/ttyp3 c 3 3 #NOKO
 	mknod -m 666 /dev/ttyp4 c 3 4 #NOKO
-
         echo "boot set" >> /root/DONOTDELETE.txt
 fi
 
@@ -60,7 +52,7 @@ rm /var/run/dbus/pid > /dev/null 2>&1
 dpkg-divert --local --rename --add /sbin/initctl > /dev/null 2>&1
 ln -s /bin/true /sbin/initctl > /dev/null 2>&1
 
-# start vnc server with given resolution and  DBUS and  SSH server                 
+# start VNC and  DBUS and  SSH server                 
 su ubuntu -l -c "vncserver :0 -geometry 1366x768 -depth 16"
 dbus-daemon --system --fork > /dev/null 2>&1
 /etc/init.d/ssh start
