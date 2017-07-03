@@ -45,10 +45,7 @@ rm /tmp/.X11-unix/X* > /dev/null 2>&1
 rm /root/.vnc/localhost* > /dev/null 2>&1
 rm /var/run/dbus/pid > /dev/null 2>&1
 
-# enable workaround for upstart dependent installs         #
-# in chroot'd environment. this allows certain packages    #
-# that use upstart start/stop to not fail on install.      #
-# this means they will have to be launched manually though #
+# Something uncomprehensible, but vital        
 dpkg-divert --local --rename --add /sbin/initctl > /dev/null 2>&1
 ln -s /bin/true /sbin/initctl > /dev/null 2>&1
 
