@@ -21,10 +21,10 @@ if [ ! -f $mnt/root/DONOTDELETE.txt ]; then
 	echo "127.0.0.1 localhost" > $mnt/etc/hosts
 fi
 
-# Chroot into ubuntu
+# Chroot into linux
 chroot $mnt /root/init.sh 
 
-# Shut down ubuntu
+# Shut down linux
 echo "Shutting down Linux ARM"
 for pid in `lsof | grep $mnt | sed -e's/  / /g' | cut -d' ' -f2`; do kill -9 $pid >/dev/null 2>&1; done
 umount $mnt/usbotg
