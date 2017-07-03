@@ -22,6 +22,7 @@ if [ ! -f /root/DONOTDELETE.txt ]
 	chmod 755 /var/run/dbus
 	usermod -a -G android_bt,android_bt-net,android_inet,android_net-raw messagebus
 	echo "shm /dev/shm tmpfs nodev,nosuid,noexec 0 0" >> /etc/fstab
+	adduser "ubuntu"
 	cd /root
 	tar cf - .vnc |(cd /home/ubuntu ; tar xf -)
 	chown -R ubuntu.ubuntu /home/ubuntu
