@@ -7,9 +7,7 @@ error_exit() {
 cd /
 mnt=/data/sdext2
 
-###########################################
 # Mount all required partitions           #
-###########################################
 mount -o gid=5,mode=620 -t devpts devpts $mnt/dev/pts 
 if [ $? -ne 0 ];then error_exit "Unable to mount $mnt/dev/pts!"; fi
 mount -t proc proc $mnt/proc
@@ -23,10 +21,7 @@ if [ $? -ne 0 ];then error_exit "Unable to bind $mnt/sdcard1!"; fi
 mount -o bind /storage/usbotg  $mnt/usbotg
 if [ $? -ne 0 ];then error_exit "Unable to bind $mnt/usbotg!"; fi
 
-
-###########################################
-# Sets up network forwarding              #k
-###########################################
+# Sets up network forwarding 
 sysctl -w net.ipv4.ip_forward=1
 if [ $? -ne 0 ];then error_exit "Unable to forward network!"; fi
 
@@ -39,20 +34,12 @@ if [ ! -f $mnt/root/DONOTDELETE.txt ]; then
 	if [ $? -ne 0 ];then error_exit "Unable to write hosts file!"; fi
 fi
 
-###########################################
-# Chroot into ubuntu                      #
-###########################################
+# Chroot into ubuntu
 chroot $mnt /root/init.sh 
 
-###########################################
-# Shut down ubuntu                        #
-###########################################
+# Shut down ubuntu
 echo "Shutting down Linux ARM"
-#for pid in `lsof | grep $mnt | sed -e's/  / /g' | cut -d' ' -f2`; do kill -9 $pid >/dev/null 2>&1; done
-
 for pid in `lsof | grep $mnt | sed -e's/  / /g' | cut -d' ' -f2`; do kill -9 $pid >/dev/null 2>&1; done
-
-
 echo umount $mnt/usbotg
 umount $mnt/usbotg
 echo umount $mnt/sdcard
