@@ -62,7 +62,6 @@ dbus-daemon --system --fork > /dev/null 2>&1
 telnet 127.0.0.1 -l "ubuntu"
 # ssh 127.0.0.1 -l "ubuntu" 
 # bash -l "ubuntu"
-# su "ubuntu"
 
 # When exit from the login session Kill Everything
 killall -9 inetd
