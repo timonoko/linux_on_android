@@ -1,0 +1,4 @@
+# This resides somewhere in android filesystem
+# /system/bin/ would be good
+
+su -c /data/sdext2/uusboot.sh
