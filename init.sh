@@ -51,11 +51,11 @@ rm /var/run/dbus/pid > /dev/null 2>&1
 dpkg-divert --local --rename --add /sbin/initctl > /dev/null 2>&1
 ln -s /bin/true /sbin/initctl > /dev/null 2>&1
 
-# start VNC and  DBUS and  SSH server                 
+# start VNC, DBUS, SSH, TELNET, FTP servers                 
 su ubuntu -l -c "vncserver :0 -geometry 1366x768 -depth 16"
 dbus-daemon --system --fork > /dev/null 2>&1
 /etc/init.d/ssh start
-/usr/sbin/inetd /etc/inetd.conf
+/usr/sbin/inetd /etc/inetd.conf # telnet and ftp enabed in inetd.conf
 
 # Login, some of these might work
 telnet 127.0.0.1 -l "ubuntu"
